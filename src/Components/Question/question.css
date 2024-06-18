@@ -1,0 +1,22 @@
+.question-body {
+  margin-bottom: 20px;
+  background-color: lightblue;
+  padding: 10px 0;
+}
+.question .label {
+  font-size: 18px;
+  margin-right: 10px;
+}
+
+.question-title {
+  font-weight: 700;
+  font-size: 20px;
+}
+.question-image-container p {
+  font-size: 16px;
+  margin: 5px 0;
+}
+.question-image-container img {
+  width: 100%;
+  height: auto;
+}

@@ -1,0 +1,12 @@
+.block-excercise {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 20px;
+  background-color: lightskyblue;
+}
+
+.block-excercise .arrow-right {
+  font-size: 30px;
+  cursor: pointer;
+}
