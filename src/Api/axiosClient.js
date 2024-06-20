@@ -1,6 +1,6 @@
 import axios from "axios";
 const instance = axios.create({
-  baseURL: "http://blocklywebnhanbiet.runasp.net/api/",
+  baseURL: "https://blocklywebnhanbiet.runasp.net/api/",
   headers: { "Content-Type": "application/json" },
 });
 //custom header truyen vao token
