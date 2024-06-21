@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import QuestionContainer from "../../Components/QuestionContainer/QuestionContainer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { GetExcerciseById } from "../../Api/lesson";
 const LearnContainer = () => {
   const [questions, setQuestions] = useState(null);
   const { lessonId } = useParams();
+  const navigate = useNavigate();
   const initial = async () => {
     try {
       var res = await GetExcerciseById(lessonId);
@@ -18,7 +19,24 @@ const LearnContainer = () => {
     }
   };
   useEffect(() => {
-    initial();
+    if (!sessionStorage.getItem("currentPractice")) {
+      navigate("/home");
+    } else {
+      initial();
+    }
+  }, []);
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      const message = "Bạn đang làm bài, bạn có chắc chắn muốn rời khỏi trang?";
+      e.preventDefault();
+      e.returnValue = message;
+      return message;
+    };
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
   }, []);
   return (
     <div className="learn-container">
