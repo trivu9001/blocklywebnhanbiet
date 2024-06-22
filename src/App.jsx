@@ -18,6 +18,8 @@ import Profile from "./Pages/Profile/Profile.jsx";
 import { Toaster } from "react-hot-toast";
 import History from "./Pages/History/History.jsx";
 import Statistic from "./Pages/Statistic/Statistic.jsx";
+import Excercise from "./Pages/Excercise/Excercise.jsx";
+import DetailHistory from "./Pages/DetailHistory/DetailHistory.jsx";
 export default function App() {
   return (
     <UserContextProvider>
@@ -65,6 +67,14 @@ export default function App() {
           }
         />
         <Route
+          path="/excercises"
+          element={
+            <UserRoute>
+              <Excercise />
+            </UserRoute>
+          }
+        />
+        <Route
           path="/lessons/:lessonId"
           element={
             <UserRoute>
@@ -105,6 +115,7 @@ export default function App() {
           }
         />
         <Route path="/history" element={<History />}></Route>
+        <Route path="/detailhistory" element={<DetailHistory />}></Route>
         <Route path="/statistic" element={<Statistic />}></Route>
         <Route path="/*" element={<NotFound />} />
       </Routes>

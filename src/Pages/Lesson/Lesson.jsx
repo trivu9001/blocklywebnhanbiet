@@ -48,6 +48,7 @@ const Lesson = () => {
                 id={item.id}
                 content={item.content}
                 exNo={item.exNo}
+                isCompleted={item.isCompleted}
               />
             );
           })}

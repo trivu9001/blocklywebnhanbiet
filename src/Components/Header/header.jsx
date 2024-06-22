@@ -25,6 +25,9 @@ const Header = () => {
                 <Link to={"/topics"}>Chủ đề +</Link>
               </li>
               <li>
+                <Link to={"/excercises"}>Bài học</Link>
+              </li>
+              <li>
                 <Link to={"/quizess"}>Câu đố</Link>
               </li>
               <li>

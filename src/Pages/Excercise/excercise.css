@@ -1,0 +1,39 @@
+.seach-container {
+  padding: 10px 140px;
+}
+
+.search-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.search-form .search-input {
+  border-radius: 35px;
+  padding: 11px;
+  max-width: 35%;
+}
+.search-form .search-input::placeholder {
+  font-style: italic;
+}
+.search-form .btn-search {
+  position: absolute;
+  max-width: 10%;
+  top: 0;
+  right: 0;
+  padding: 6px;
+  border-radius: 20px;
+  margin: 0;
+}
+.export-container {
+  display: flex;
+  gap: 10px;
+}
+.export-container button {
+  background-color: lightseagreen;
+  padding: 10px;
+  margin: 0;
+  font-size: 14px;
+}

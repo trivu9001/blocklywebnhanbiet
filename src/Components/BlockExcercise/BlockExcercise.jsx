@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
 const BlockExcercise = (props) => {
-  const { id, content, exNo } = props;
+  const { id, content, exNo, isCompleted } = props;
   const navigate = useNavigate();
   const handleClick = async () => {
     try {
@@ -27,7 +27,7 @@ const BlockExcercise = (props) => {
     }
   };
   return (
-    <div className="block-excercise">
+    <div className={`block-excercise ${isCompleted ? "completed" : ""}`}>
       <h1>
         Bài {exNo}: {content}
       </h1>

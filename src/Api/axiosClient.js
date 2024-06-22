@@ -24,7 +24,7 @@ instance.interceptors.response.use(
       sessionStorage.removeItem("email");
       sessionStorage.removeItem("type");
       window.location.href("/login");
-    }//xuất ra lỗi
+    } //xuất ra lỗi
     return Promise.reject(error);
   }
 );

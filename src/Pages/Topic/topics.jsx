@@ -1,9 +1,12 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import BlockTopic from "../../Components/BlockTopic/BlockTopic";
 import { useEffect, useState } from "react";
 import { GetAllTopic } from "../../Api/topic";
+import "./topic.css";
 const Topics = () => {
   const [topics, setTopics] = useState();
+  const [search, setSearch] = useState("");
+  const navigate = useNavigate();
   const initalPage = async () => {
     try {
       const res = await GetAllTopic();
@@ -11,6 +14,10 @@ const Topics = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    navigate(`/excercise?search=${search}`);
   };
   useEffect(() => {
     initalPage();

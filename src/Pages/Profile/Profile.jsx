@@ -56,7 +56,7 @@ const Profile = () => {
           <div className="picture">
             <img
               src={
-                "https://lh3.googleusercontent.com/a/ACg8ocKms9K2DAGiS1-6KJRP8DyGOAQ0hS-zolWCZmgT-qldomNz9XeB=s96-c"
+                "https://i.ibb.co/SxJxbKX/Profile.jpg"
               }
               alt="Profile Picture"
             />

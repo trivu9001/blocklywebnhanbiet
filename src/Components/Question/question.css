@@ -1,7 +1,8 @@
 .question-body {
   margin-bottom: 20px;
   background-color: lightblue;
-  padding: 10px 0;
+  padding: 10px 20px;
+  text-align: center;
 }
 .question .label {
   font-size: 18px;
@@ -19,4 +20,34 @@
 .question-image-container img {
   width: 100%;
   height: auto;
+}
+.question-tags {
+  display: flex;
+  /* justify-content: space-between; */
+  margin-bottom: 15px;
+  font-size: 13px;
+}
+/* .question-tags .tag {
+  padding: 5px 30px;
+  border-radius: 20px;
+  background-color: lightcoral;
+  color: #fff;
+} */
+
+.question-tags .level {
+  padding: 5px 20px;
+  border-radius: 20px;
+  color: #fff;
+}
+
+.level-easy {
+  background-color: green;
+}
+
+.level-normal {
+  background-color: blue;
+}
+
+.level-hard {
+  background-color: orange;
 }

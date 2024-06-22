@@ -3,14 +3,21 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 import "./history.css";
 import { GetHistory } from "../../Api/history";
+import moment from "moment";
+import Pagination from "../../Components/Pagination/Pagination";
 
 const History = () => {
   const [histories, setHistories] = useState();
+  const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(0);
   const initial = async () => {
     try {
-      const res = await GetHistory();
+      const res = await GetHistory(currentPage, 5);
       if (res.resultCode === 0) {
-        setHistories(res.data);
+        setHistories(res.data.items);
+        setTotalPage(res.data.totalPages);
+        setLoading(false);
       } else {
         toast.error(res.message);
       }
@@ -20,7 +27,7 @@ const History = () => {
   };
   useEffect(() => {
     initial();
-  }, []);
+  }, [currentPage]);
   return (
     <>
       <section className="heading">
@@ -31,30 +38,62 @@ const History = () => {
         </p>
       </section>
       <section className="history">
-        <table>
-          <thead>
-            <tr>
-              <th>Chủ đề</th>
-              <th>Thời gian bắt đầu</th>
-              <th>Thời gian kết thúc</th>
-              <th>Số câu hoàn thành</th>
-            </tr>
-          </thead>
-          <tbody>
-            {histories ? (
-              histories.map((record, index) => (
-                <tr key={index}>
-                  <td>{record.excerciseName}</td>
-                  <td>{record.startdate}</td>
-                  <td>{record.enddate}</td>
-                  <td>{record.count}</td>
+        {loading ? (
+          <p>Loading...</p>
+        ) : (
+          <>
+            <table>
+              <thead>
+                <tr>
+                  <th>Chủ đề</th>
+                  <th>Thời gian bắt đầu</th>
+                  <th>Thời gian kết thúc</th>
+                  <th>Số câu hoàn thành</th>
+                  <th></th>
                 </tr>
-              ))
-            ) : (
-              <p>Chưa có dữ liệu</p>
-            )}
-          </tbody>
-        </table>
+              </thead>
+              <tbody>
+                {histories ? (
+                  histories.map((record, index) => (
+                    <tr key={index}>
+                      <td>{record.excerciseName}</td>
+                      <td>
+                        {moment(record.startdate).format("DD/MM/yyyy HH:mm:ss")}
+                      </td>
+                      <td>
+                        {record.enddate &&
+                          moment(record.enddate).format("DD/MM/yyyy HH:mm:ss")}
+                      </td>
+                      <td>{record.count}</td>
+                      <td>
+                        {record.count > 0 ? (
+                          <Link
+                            to="/detailhistory"
+                            state={{
+                              hisId: record.id,
+                              exId: record.excerciseId,
+                            }}
+                          >
+                            Chi tiết
+                          </Link>
+                        ) : (
+                          <></>
+                        )}
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <p>Chưa có dữ liệu</p>
+                )}
+              </tbody>
+            </table>
+            <Pagination
+              totalPages={totalPage}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+            ></Pagination>
+          </>
+        )}
       </section>
     </>
   );

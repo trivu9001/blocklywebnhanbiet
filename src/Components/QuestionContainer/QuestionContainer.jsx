@@ -5,7 +5,7 @@ import BlocklyContainer from "../BlocklyContainer/BlocklyContainer";
 import { CheckAnswer, EndPractice } from "../../Api/lesson";
 import toast from "react-hot-toast";
 import { save } from "../../BlocklyJS/serialization";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const QuestionContainer = (props) => {
   const { questions } = props;
@@ -15,6 +15,7 @@ const QuestionContainer = (props) => {
   const workspaceRef = useRef(null);
 
   const navigate = useNavigate();
+  //const location = useLocation();
   const handleCheckAnswer = () => {
     if (workspaceRef.current) {
       var blocks = workspaceRef.current.getAllBlocks();
@@ -53,27 +54,32 @@ const QuestionContainer = (props) => {
     try {
       var res = await CheckAnswer(answer);
       if (res.data === true) {
+        localStorage.setItem(`workspace_${currentQuestion.id}`, answer.state);
         setCompleted([...completed, number]);
         toast.success("Chính xác!!!");
         if (number < questions.length) {
           setNumber(number + 1);
           setCurrentQuestion(questions[number]);
         } else {
-          alert("Hoàn thành hết câu hỏi");
+          toast.success("Hoàn thành hết câu hỏi");
+          submitPractice(5);
         }
       } else {
         toast.error("Sai rồi!!!");
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
-  const submitPractice = async () => {
+  const submitPractice = async (completedQuestion) => {
     try {
       var hisId = sessionStorage.getItem("currentPractice");
-      const res = await EndPractice(hisId, 5);
+      const res = await EndPractice(hisId, completedQuestion);
       if (res.resultCode === 0) {
         toast.success("Nộp bài thành công");
+        questions.forEach((question) => {
+          localStorage.removeItem(`workspace_${question.id}`);
+        });
         sessionStorage.removeItem("currentPractice");
         navigate("/history");
       } else {
@@ -87,21 +93,21 @@ const QuestionContainer = (props) => {
     if (questions !== null) {
       setCurrentQuestion(questions[0]);
     }
-
-    const handleBeforeUnload = (e) => {
-      if (completed.length !== questions.length) {
-        const message =
-          "Bạn đang làm bài, bạn có chắc chắn muốn rời khỏi trang?";
-        e.returnValue = message;
-        return message;
-      }
-    };
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
   }, [questions]);
+  useEffect(() => {
+    if (completed.includes(number)) {
+      const workspaceAnswer = localStorage.getItem(
+        `workspace_${currentQuestion.id}`
+      );
+      setCurrentQuestion((prev) => ({
+        ...prev,
+        workspaceQuestion: workspaceAnswer,
+      }));
+    }
+  }, [number]);
+  // useEffect(() => {
+  //   alert("Bạn thay đổi route");
+  // }, [location]);
   return (
     <div className="question-container">
       <div className="col-left">
@@ -136,16 +142,14 @@ const QuestionContainer = (props) => {
               );
             })}
         </div>
-        {completed.length < questions.length ? (
+        {!completed.includes(number) && (
           <button onClick={handleCheckAnswer} className="check-answer">
             Kiểm tra kết quả
           </button>
-        ) : (
-          <button onClick={submitPractice} className="check-answer">
-            Nộp bài
-          </button>
         )}
-
+        {/* <button onClick={handleCheckAnswer} className="check-answer">
+          Kiểm tra kết quả
+        </button> */}
         {currentQuestion && <Question question={currentQuestion} />}
       </div>
     </div>

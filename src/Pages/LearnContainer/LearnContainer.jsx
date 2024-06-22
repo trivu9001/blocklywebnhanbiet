@@ -6,6 +6,7 @@ const LearnContainer = () => {
   const [questions, setQuestions] = useState(null);
   const { lessonId } = useParams();
   const navigate = useNavigate();
+
   const initial = async () => {
     try {
       var res = await GetExcerciseById(lessonId);
@@ -25,19 +26,7 @@ const LearnContainer = () => {
       initial();
     }
   }, []);
-  useEffect(() => {
-    const handleBeforeUnload = (e) => {
-      const message = "Bạn đang làm bài, bạn có chắc chắn muốn rời khỏi trang?";
-      e.preventDefault();
-      e.returnValue = message;
-      return message;
-    };
 
-    window.addEventListener("beforeunload", handleBeforeUnload);
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
   return (
     <div className="learn-container">
       {questions && <QuestionContainer questions={questions} />}
