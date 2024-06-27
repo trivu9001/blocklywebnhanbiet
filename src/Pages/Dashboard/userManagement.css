@@ -1,0 +1,52 @@
+.user-management {
+    padding: 20px 10%;
+  }
+  .user-management table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1.5rem;
+    text-align: left;
+  }
+  
+  .user-management th,
+  td {
+    padding: 12px;
+    border-bottom: 1px solid #ffffff;
+  }
+  
+  .user-management th {
+    background-color: #0011f8;
+    font-weight: bold;
+  }
+  
+  .user-management tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .user-management h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 3rem;
+  }
+  
+  /* .user-management .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    
+    .user-management .pagination button {
+      padding: 10px;
+      margin: 0 5px;
+      border: 1px solid #ddd;
+      background-color: #224bcf;
+      color: white;
+      cursor: pointer;
+      max-width: 5%;
+    }
+    
+    .user-management .pagination button.active {
+      background-color: #fa1d86;
+    } */
+  

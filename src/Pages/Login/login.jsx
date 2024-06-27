@@ -22,7 +22,10 @@ const Login = () => {
     const res = await LoginByAccount(username, password);
     console.log(res);
     if (res.resultCode === 0) {
-      //LoginContext(res.data.email, res.data.token, res.data.type);
+      LoginContext(res.data.email, res.data.token, res.data.type,res.data.fullname);
+      if (res.data.type == 1){
+      navigate("/dashboard");
+      }
     } else {
       alert(res.message);
     }
@@ -31,7 +34,7 @@ const Login = () => {
     try {
       const res = await LoginGoogle(idToken);
       if (res.resultCode === 0) {
-        LoginContext(res.data.email, res.data.token, res.data.type);
+        LoginContext(res.data.email, res.data.token, res.data.type,res.data.fullname);
         navigate("/home");
       } else {
         alert("Đăng nhập bằng Google thất bại!!!");
@@ -82,7 +85,7 @@ const Login = () => {
               <GoogleLogin
                 buttonText="Signin with Google"
                 clientId={
-                  "52589092639-rmsjs7ofg66kunin0cel5q2r5co7j31d.apps.googleusercontent.com"
+                  "789509311005-sn83404fvlvtinrer42lf6sh70d9pftc.apps.googleusercontent.com"
                 }
                 onFailure={handleGoogleFailure}
                 onSuccess={handleGoogleSuccess}

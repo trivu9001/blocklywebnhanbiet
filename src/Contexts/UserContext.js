@@ -6,21 +6,25 @@ export const UserContextProvider = ({ children }) => {
   useEffect(() => {
     const token = sessionStorage.getItem("token");
     const email = sessionStorage.getItem("email");
-    if (token !== null && email !== null) {
-      setUser({ token, email });
+    const type = sessionStorage.getItem("type");
+    const fullname = sessionStorage.getItem("fullname");
+    if (token !== null && email !== null && type !==null && fullname !== null ) {
+      setUser({ token, email, fullname });
     }
   }, []);
-  const LoginContext = (email, token, type) => {
+  const LoginContext = (email, token, type, fullname) => {
     sessionStorage.setItem("email", email);
     sessionStorage.setItem("token", token);
     sessionStorage.setItem("type", type);
-    setUser({ email, token, type });
+    sessionStorage.setItem("fullname", fullname);
+    setUser({ email, token, type, fullname });
   };
 
   const LogoutContext = () => {
     sessionStorage.removeItem("email");
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("type");
+    sessionStorage.removeItem("fullname");
     setUser(null);
   };
   const contextValue = {

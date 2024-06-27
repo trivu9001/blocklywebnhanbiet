@@ -5,8 +5,8 @@ import Contact from "./Pages/Contact/contact.jsx";
 import Topics from "./Pages/Topic/topics.jsx";
 import Quizess from "./Pages/Quizess/quizess.jsx";
 import About from "./Pages/About/about.jsx";
-import Header from "./Components/Header/header.jsx";
-import Footer from "./Components/Footer/footer.jsx";
+// import Header from "./Components/Header/header.jsx";
+// import Footer from "./Components/Footer/footer.jsx";
 import UserRoute from "./Routes/UserRoute.jsx";
 import UserContextProvider from "./Contexts/UserContext.js";
 import NotFound from "./Pages/NotFound/NotFound.jsx";
@@ -20,10 +20,20 @@ import History from "./Pages/History/History.jsx";
 import Statistic from "./Pages/Statistic/Statistic.jsx";
 import Excercise from "./Pages/Excercise/Excercise.jsx";
 import DetailHistory from "./Pages/DetailHistory/DetailHistory.jsx";
+import AdminProfile from "./Pages/Dashboard/adminProfile.jsx";
+import AdminRoute from "./Routes/AdminRoute.jsx";
+import UserManagement from "./Pages/Dashboard/UserManagement.jsx";
+import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
+import { UserContext } from "./Contexts/UserContext.js";
+import { useContext } from "react";
+
+
 export default function App() {
+
+//  const {user} = useContext(UserContext);
   return (
     <UserContextProvider>
-      <Header />
+      {/* <Header /> */}
       <Routes>
         <Route
           path="/"
@@ -40,6 +50,36 @@ export default function App() {
             <UserRoute>
               <Home />
             </UserRoute>
+          }
+        />
+       <Route
+          path="/dashboard"
+          element={
+            <AdminRoute>
+              <Dashboard />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/dashboard-test"
+          element={
+            <AdminProfile />
+          }
+        />
+        <Route
+          path="/user-management"
+          element={
+            <AdminRoute>
+              <UserManagement />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin-profile"
+          element={
+            <AdminRoute>
+              <AdminProfile />
+            </AdminRoute>
           }
         />
         <Route
@@ -126,7 +166,7 @@ export default function App() {
           },
         }}
       />
-      <Footer />
+      {/* <Footer /> */}
     </UserContextProvider>
   );
 }
