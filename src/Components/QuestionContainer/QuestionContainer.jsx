@@ -120,6 +120,7 @@ const QuestionContainer = (props) => {
             setWorkspaceReady={(workspace) => {
               workspaceRef.current = workspace;
             }}
+            answerType={currentQuestion ? currentQuestion.blockQuestType : null}
           />
         )}
       </div>

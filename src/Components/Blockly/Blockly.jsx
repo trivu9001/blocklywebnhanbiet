@@ -4,7 +4,7 @@ import * as Blockly from "blockly";
 import { GetAllDefineBlock } from "../../Api/block";
 import "./blockly.css";
 const BlocklyComponent = (props) => {
-  const { toolbox, workspace, setWorkspaceReady } = props;
+  const { toolbox, workspace, setWorkspaceReady, answerType } = props;
   const [error, setError] = useState(false);
   const [toolboxParse, setToolboxParse] = useState(null);
   const [workspaceParse, setWorkspaceParse] = useState(null);
@@ -93,6 +93,26 @@ const BlocklyComponent = (props) => {
     newWorkspace.addChangeListener((event) => {
       if (event.type !== Blockly.Events.UI) {
         setWorkspaceReady(newWorkspace); // Cập nhật workspace mỗi khi có thay đổi
+      }
+    });
+    newWorkspace.addChangeListener((event) => {
+      if (event.type == Blockly.Events.BLOCK_CREATE) {
+        var blockType = answerType;
+        console.log(blockType);
+        var blocks = newWorkspace.getAllBlocks(false);
+        var count = blocks.filter((block) => block.type === blockType).length;
+
+        // Nếu đã tồn tại một block cùng loại, hủy sự kiện tạo block
+        if (count > 1) {
+          var createdBlockIds = event.ids;
+          createdBlockIds.forEach(function (id) {
+            var block = newWorkspace.getBlockById(id);
+            if (block && block.type === blockType) {
+              setTimeout(() => block.dispose(true), 1); // Xóa block mới tạo
+            }
+          });
+          alert("Chỉ có một block câu hỏi được tồn tại.");
+        }
       }
     });
   }, [toolboxParse, workspaceParse, error, defineBlock, setWorkspaceReady]);

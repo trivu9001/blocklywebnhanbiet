@@ -48,6 +48,7 @@ const History = () => {
                   <th>Chủ đề</th>
                   <th>Thời gian bắt đầu</th>
                   <th>Thời gian kết thúc</th>
+                  <th>Thời gian làm bài</th>
                   <th>Số câu hoàn thành</th>
                   <th></th>
                 </tr>
@@ -65,6 +66,7 @@ const History = () => {
                           moment(record.enddate).format("DD/MM/yyyy HH:mm:ss")}
                       </td>
                       <td>{record.count}</td>
+                      <td>{record.totalMinutes}</td>
                       <td>
                         {record.count > 0 ? (
                           <Link

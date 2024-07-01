@@ -27,13 +27,10 @@ import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
 import { UserContext } from "./Contexts/UserContext.js";
 import { useContext } from "react";
 
-
 export default function App() {
-
-//  const {user} = useContext(UserContext);
+  //  const {user} = useContext(UserContext);
   return (
     <UserContextProvider>
-      {/* <Header /> */}
       <Routes>
         <Route
           path="/"
@@ -43,6 +40,30 @@ export default function App() {
             </UserRoute>
           }
         />
+        <Route
+          path="/history"
+          element={
+            <UserRoute>
+              <History />{" "}
+            </UserRoute>
+          }
+        ></Route>
+        <Route
+          path="/detailhistory"
+          element={
+            <UserRoute>
+              <DetailHistory />
+            </UserRoute>
+          }
+        ></Route>
+        <Route
+          path="/statistic"
+          element={
+            <UserRoute>
+              <Statistic />
+            </UserRoute>
+          }
+        ></Route>
         <Route path="/login" element={<Login />} />
         <Route
           path="/home"
@@ -52,7 +73,7 @@ export default function App() {
             </UserRoute>
           }
         />
-       <Route
+        <Route
           path="/dashboard"
           element={
             <AdminRoute>
@@ -60,12 +81,7 @@ export default function App() {
             </AdminRoute>
           }
         />
-        <Route
-          path="/dashboard-test"
-          element={
-            <AdminProfile />
-          }
-        />
+        <Route path="/dashboard-test" element={<AdminProfile />} />
         <Route
           path="/user-management"
           element={
@@ -154,9 +170,7 @@ export default function App() {
             </UserRoute>
           }
         />
-        <Route path="/history" element={<History />}></Route>
-        <Route path="/detailhistory" element={<DetailHistory />}></Route>
-        <Route path="/statistic" element={<Statistic />}></Route>
+
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <Toaster

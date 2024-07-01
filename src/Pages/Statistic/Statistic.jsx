@@ -1,5 +1,6 @@
 import React from "react";
-import { useState } from "react";
+import { GetStatistic } from "../../Api/statistic";
+import { useEffect, useState } from "react";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -22,101 +23,93 @@ ChartJS.register(
   Tooltip,
   Legend
 );
-const Statistic = () => {
-  const [timeFrame, setTimeFrame] = useState("week");
 
-  const data = {
-    week: {
-      labels: [
-        "Thứ Hai",
-        "Thứ Ba",
-        "Thứ Tư",
-        "Thứ Năm",
-        "Thứ Sáu",
-        "Thứ Bảy",
-        "Chủ nhật",
-      ],
-      hours: [5, 6, 7, 5, 6, 3, 4],
-      lessons: [1, 2, 1, 1, 2, 1, 1],
-    },
-    month: {
-      labels: ["Tuần 1", "Tuần 2", "Tuần 3", "Tuần 4"],
-      hours: [20, 25, 22, 18],
-      lessons: [5, 6, 5, 4],
-    },
-    year: {
-      labels: [
-        "Tháng 1",
-        "Tháng 2",
-        "Tháng 3",
-        "Tháng 4",
-        "Tháng 5",
-        "Tháng 6",
-        "Tháng 7",
-        "Tháng 8",
-        "Tháng 9",
-        "Tháng 10",
-        "Tháng 11",
-        "Tháng 12",
-      ],
-      hours: [80, 85, 78, 80, 82, 85, 90, 88, 85, 80, 75, 80],
-      lessons: [20, 21, 19, 20, 21, 22, 23, 22, 21, 20, 19, 20],
-    },
+const Statistic = () => {
+  const [timeFrame, setTimeFrame] = useState("dataWeek");
+  const [data, setData] = useState(null);
+  const [chartData, setChartData] = useState(null);
+
+  const initalPage = async () => {
+    try {
+      const res = await GetStatistic();
+      // console.log(res);
+      if (res.resultCode === 0) {
+        setData(res.data);
+      } else {
+        alert(res.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const handleClick = (frame) => {
     setTimeFrame(frame);
   };
 
-  const chartData = {
-    labels: data[timeFrame].labels,
-    datasets: [
-      {
-        label: "Số giờ học",
-        data: data[timeFrame].hours,
-        borderColor: "rgba(75, 192, 192, 1)",
-        backgroundColor: "rgba(75, 192, 192, 0.2)",
-      },
-      {
-        label: "Số bài học",
-        data: data[timeFrame].lessons,
-        borderColor: "rgba(153, 102, 255, 1)",
-        backgroundColor: "rgba(153, 102, 255, 0.2)",
-      },
-    ],
-  };
+  useEffect(() => {
+    initalPage();
+  }, []);
+
+  useEffect(() => {
+    if (data) {
+      const chartData = {
+        labels: data[timeFrame].labels,
+        datasets: [
+          {
+            label: "Số phút học",
+            data: data[timeFrame].minutes,
+            borderColor: "rgba(75, 192, 192, 1)",
+            backgroundColor: "rgba(75, 192, 192, 0.2)",
+          },
+          {
+            label: "Số bài học",
+            data: data[timeFrame].lessons,
+            borderColor: "rgba(153, 102, 255, 1)",
+            backgroundColor: "rgba(153, 102, 255, 0.2)",
+          },
+        ],
+      };
+      setChartData(chartData);
+    }
+  }, [data, timeFrame]);
+
   return (
     <section className="statistic">
       <h1>Thống kê số giờ học</h1>
       <div className="buttons">
         <button
-          className={timeFrame === "week" ? "active" : ""}
-          onClick={() => handleClick("week")}
+          className={timeFrame === "dataWeek" ? "active" : ""}
+          onClick={() => handleClick("dataWeek")}
         >
           Theo tuần
         </button>
         <button
-          className={timeFrame === "month" ? "active" : ""}
-          onClick={() => handleClick("month")}
+          className={timeFrame === "dataMonth" ? "active" : ""}
+          onClick={() => handleClick("dataMonth")}
         >
           Theo tháng
         </button>
         <button
-          className={timeFrame === "year" ? "active" : ""}
-          onClick={() => handleClick("year")}
+          className={timeFrame === "dataYear" ? "active" : ""}
+          onClick={() => handleClick("dataYear")}
         >
           Theo năm
         </button>
       </div>
-      <div className="stats">
-        <p>
-          Tổng số giờ học: {data[timeFrame].hours.reduce((a, b) => a + b, 0)}
-        </p>
-        <p>
-          Tổng số bài học: {data[timeFrame].lessons.reduce((a, b) => a + b, 0)}
-        </p>
-      </div>
-      <Line data={chartData} />
+      {data && (
+        <div className="stats">
+          <p>
+            Tổng số phút học:{" "}
+            {data[timeFrame].minutes.reduce((a, b) => a + b, 0)}
+          </p>
+          <p>
+            Tổng số bài học:{" "}
+            {data[timeFrame].lessons.reduce((a, b) => a + b, 0)}
+          </p>
+        </div>
+      )}
+      {chartData && <Line data={chartData} />}
     </section>
   );
 };
