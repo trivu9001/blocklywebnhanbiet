@@ -3,6 +3,8 @@ import { save, load } from "../../BlocklyJS/serialization";
 import * as Blockly from "blockly";
 import { GetAllDefineBlock } from "../../Api/block";
 import "./blockly.css";
+import { registerFieldColour, FieldColour } from "@blockly/field-colour";
+registerFieldColour();
 const BlocklyComponent = (props) => {
   const { toolbox, workspace, setWorkspaceReady, answerType } = props;
   const [error, setError] = useState(false);
