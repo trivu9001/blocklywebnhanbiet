@@ -46,14 +46,15 @@ const BlockQuizz = (props) => {
           Đề {index}: {question}
         </h3>
         <p>learning is what makes you perfect</p>
-        {/* {isComplete === true ? (
+        {isComplete === true ? (
           <p>Đã làm</p>
         ) : (
-          <Link className="btn" onClick={handleClick}>
-            Làm đề
-          </Link>
-        )} */}
-        <button onClick={handleClick}>Làm quiz</button>
+          // <Link className="btn" onClick={handleClick}>
+          //   Làm quiz
+          // </Link>
+          <button onClick={handleClick}>Làm quiz</button>
+        )}
+        {/* <button onClick={handleClick}>Làm quiz</button> */}
         {/* <Link className="btn" onClick={handleClick}>
           Làm đề
         </Link> */}
