@@ -14,7 +14,7 @@ function Header({OpenSidebar}) {
             <BsSearch  className='icon'/>
         </div>
         <div className='header-right'>
-            <BsPersonCircle className='icon'/> Xin chào
+            <BsPersonCircle className='icon'/>
         </div>
     </header>
   )

@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
-import "./history.css";
-import { GetHistory } from "../../Api/history";
+import "../History/history.css";
+import { GetHistoryQuizz } from "../../Api/history";
 import moment from "moment";
 import Pagination from "../../Components/Pagination/Pagination";
 
-const History = () => {
+const HistoryQuizz = () => {
   const [histories, setHistories] = useState();
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(0);
   const initial = async () => {
     try {
-      const res = await GetHistory(currentPage, 5);
+      const res = await GetHistoryQuizz(currentPage, 5);
       if (res.resultCode === 0) {
         setHistories(res.data.items);
         setTotalPage(res.data.totalPages);
@@ -31,10 +31,10 @@ const History = () => {
   return (
     <>
       <section className="heading">
-        <h3>Lịch sử học</h3>
+        <h3>Lịch sử giải đố</h3>
         <p>
           <Link to={"/home"}>Trang chủ &gt;&gt;</Link>
-          Lịch sử học
+          Lịch sử giải đố
         </p>
       </section>
       <section className="history">
@@ -101,4 +101,4 @@ const History = () => {
   );
 };
 
-export default History;
+export default HistoryQuizz;

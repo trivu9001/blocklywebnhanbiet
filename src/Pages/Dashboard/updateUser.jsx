@@ -2,10 +2,12 @@ import React, { useEffect, useState } from "react";
 import { GetMe, UpdateMe } from "../../Api/user";
 import { formatDate } from "../../Extensions/formatDate";
 import "./adminProfile.css";
+import { useNavigate } from "react-router-dom";
 
-const AdminProfile = () => {
+const UpdateUser = () => {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const initial = async () => {
     try {
       const res = await GetMe();
@@ -42,6 +44,7 @@ const AdminProfile = () => {
     if (res.resultCode === 0) {
       alert("Cập nhật thành công");
       setLoading(false);
+      navigate("/user-management");
     } else {
       alert("Có lỗi: " + res.message);
     }
@@ -49,9 +52,10 @@ const AdminProfile = () => {
   useEffect(() => {
     initial();
   }, []);
+
   return (
     <main className='main-container'>
-      <h1> Trang cá nhân</h1>
+      <h1> Chỉnh sửa thông tin người dùng</h1>
       <div className="profile-page">
       {user && (
         <>
@@ -64,7 +68,7 @@ const AdminProfile = () => {
             />
           </div>
           <div className="profile-info">
-            <h1>Thông tin cá nhân</h1>
+            <h1>Thông tin người dùng</h1>
             <form className="user-info" onSubmit={handleSubmit}>
               <input name="id" value={user.id} type="hidden" readOnly />
               <input
@@ -108,4 +112,4 @@ const AdminProfile = () => {
   );
 };
 
-export default AdminProfile;
+export default UpdateUser;

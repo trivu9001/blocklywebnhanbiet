@@ -1,5 +1,5 @@
 .user-management {
-    padding: 20px 10%;
+    padding: 20px 20px;
   }
   .user-management table {
     width: 100%;
@@ -12,16 +12,26 @@
   .user-management th,
   td {
     padding: 12px;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #ddd;
+    color: black;
   }
   
   .user-management th {
-    background-color: #0011f8;
+    background-color: #f4f4f4;
     font-weight: bold;
   }
   
   .user-management tbody tr:hover {
     background-color: #f1f1f1;
+  }
+  .user-management td button {
+    border: none;
+    background-color: transparent;
+    color: rgb(0, 0, 0); /* White text */
+    margin-inline: 12px; /* Some padding */
+    cursor: pointer;
+    width: 30%;
+    height: 30%;
   }
   
   .user-management h1 {

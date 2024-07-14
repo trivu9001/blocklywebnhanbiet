@@ -68,7 +68,9 @@ const DetailHistory = () => {
             <div className="number-container">
               {questions.map((question, index) => {
                 const isCompleted = histories.some(
-                  (history) => history.iD_DetailExQuest === question.id
+                  (history) =>
+                    history.iD_DetailExQuest === question.id &&
+                    history.isDone === true
                 );
                 return (
                   <button
@@ -84,7 +86,12 @@ const DetailHistory = () => {
                 );
               })}
             </div>
-            {currentQuestion && <Question question={currentQuestion} />}
+            {currentQuestion && (
+              <Question
+                question={currentQuestion}
+                checkanswer={currentHisQuestion.showAns}
+              />
+            )}
           </div>
         </>
       ) : (

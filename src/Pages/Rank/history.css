@@ -1,0 +1,51 @@
+.history {
+  padding: 20px 10%;
+}
+.history table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1.5rem;
+  text-align: left;
+}
+
+.history th,
+td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+}
+
+.history th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+}
+
+.history tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.history h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 3rem;
+}
+
+/* .history .pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .history .pagination button {
+    padding: 10px;
+    margin: 0 5px;
+    border: 1px solid #ddd;
+    background-color: #224bcf;
+    color: white;
+    cursor: pointer;
+    max-width: 5%;
+  }
+  
+  .history .pagination button.active {
+    background-color: #fa1d86;
+  } */

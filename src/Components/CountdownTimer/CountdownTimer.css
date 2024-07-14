@@ -1,0 +1,41 @@
+/* styles.css */
+.countdown-timer {
+  font-size: 36px; /* Tăng kích thước chữ */
+  font-weight: bold; /* Làm đậm chữ */
+  text-align: center; /* Căn giữa nội dung */
+  margin-top: 20px; /* Khoảng cách với phần tử trên */
+}
+
+.countdown-timer h1 {
+  font-size: 24px; /* Tăng kích thước chữ của tiêu đề */
+  margin-bottom: 10px; /* Khoảng cách dưới tiêu đề */
+}
+
+.countdown-timer p {
+  font-size: 48px; /* Tăng kích thước chữ của đồng hồ đếm */
+  margin: 0; /* Xóa khoảng cách mặc định */
+}
+
+.countdown-timer p {
+  font-size: 33px; /* Tăng kích thước chữ */
+  font-weight: bold; /* Làm đậm chữ */
+  font-family: "Arial", sans-serif; /* Thay đổi font chữ */
+  color: #333; /* Màu chữ */
+  text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5); /* Đổ bóng chữ */
+  margin: 10px 0; /* Khoảng cách với phần tử xung quanh */
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.countdown-timer .time-critical {
+  color: tomato;
+  animation: blink 0.5s infinite;
+}

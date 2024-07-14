@@ -13,10 +13,19 @@ const UserRoute = ({ children }) => {
       navigate("/login");
     }
   }, []);
-  return <>  
-  <Header/>
-  {children}
-  <Footer/></>;
+  return (
+    <>
+    {/* Không được xóa, xóa lỗi front-end */}
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    />  
+    <Header/>
+    {children}
+    <Footer/>
+    </>
+  );
+  
 };
 
 export default UserRoute;

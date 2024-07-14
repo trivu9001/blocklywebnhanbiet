@@ -1,7 +1,7 @@
 import React from "react";
 import "./question.css";
 const Question = (props) => {
-  const { question } = props;
+  const { question, checkanswer = false } = props;
   return (
     <div className="question">
       <div className="question-tags">
@@ -22,6 +22,12 @@ const Question = (props) => {
             ? "Bình thường"
             : "Khó"}
         </span>
+        {checkanswer &&
+          (checkanswer === true ? (
+            <span className="label-checkanswer">Đã xem đáp án</span>
+          ) : (
+            <></>
+          ))}
       </div>
       <div className="question-body">
         <span className="label">Câu hỏi : </span>

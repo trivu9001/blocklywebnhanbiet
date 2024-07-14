@@ -10,6 +10,7 @@ import toast from "react-hot-toast";
 import useThrottle from "../../hooks/useThrottle";
 import { ExportExcelExcercise } from "../../Components/ExportExcel/ExportExcelExcercise";
 import { ExportExcelBlockly } from "../../Components/ExportExcel/ExportExcelBlockly";
+import { Link } from "react-router-dom";
 import { GetAllDefineBlock } from "../../Api/block";
 const Excercise = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -55,6 +56,13 @@ const Excercise = () => {
 
   return (
     <>
+      <section className="heading">
+        <h3>Bài học</h3>
+        <p>
+          <Link to={"/home"}>Trang chủ &gt;&gt;</Link>
+          Xem các bài học không theo chủ đề và xuất file Excel
+        </p>
+      </section>
       <div className="seach-container">
         <div className="search-form">
           <input

@@ -17,6 +17,7 @@ import "./style.css";
 import Profile from "./Pages/Profile/Profile.jsx";
 import { Toaster } from "react-hot-toast";
 import History from "./Pages/History/History.jsx";
+import HistoryQuizz from "./Pages/HistoryQuizz/HistoryQuizz.jsx";
 import Statistic from "./Pages/Statistic/Statistic.jsx";
 import Excercise from "./Pages/Excercise/Excercise.jsx";
 import DetailHistory from "./Pages/DetailHistory/DetailHistory.jsx";
@@ -24,13 +25,16 @@ import AdminProfile from "./Pages/Dashboard/adminProfile.jsx";
 import AdminRoute from "./Routes/AdminRoute.jsx";
 import UserManagement from "./Pages/Dashboard/UserManagement.jsx";
 import Dashboard from "./Pages/Dashboard/Dashboard.jsx";
-import { UserContext } from "./Contexts/UserContext.js";
-import { useContext } from "react";
+// import { UserContext } from "./Contexts/UserContext.js";
+// import { useContext } from "react";
+import Rank from "./Pages/Rank/Rank.jsx";
+import QuizContainer from "./Pages/QuizContainer/QuizContainer.jsx";
+import RankQuizz from "./Pages/Rank/RankQuizz.jsx";
 
 export default function App() {
-  //  const {user} = useContext(UserContext);
   return (
     <UserContextProvider>
+      {/* <Header /> */}
       <Routes>
         <Route
           path="/"
@@ -41,13 +45,46 @@ export default function App() {
           }
         />
         <Route
+          path="/QuizContainer/:quizzId"
+          element={
+            <UserRoute>
+              <QuizContainer />
+            </UserRoute>
+          }
+        />
+        <Route
           path="/history"
           element={
             <UserRoute>
-              <History />{" "}
+              <History />
             </UserRoute>
           }
         ></Route>
+        <Route
+          path="/historyQuizz"
+          element={
+            <UserRoute>
+              <HistoryQuizz />
+            </UserRoute>
+          }
+        ></Route>
+        <Route
+          path="/rank"
+          element={
+            <UserRoute>
+              <Rank />
+            </UserRoute>
+          }
+        ></Route>
+        <Route
+          path="/rankquizz"
+          element={
+            <UserRoute>
+              <RankQuizz />
+            </UserRoute>
+          }
+        ></Route>
+
         <Route
           path="/detailhistory"
           element={
@@ -74,31 +111,6 @@ export default function App() {
           }
         />
         <Route
-          path="/dashboard"
-          element={
-            <AdminRoute>
-              <Dashboard />
-            </AdminRoute>
-          }
-        />
-        <Route path="/dashboard-test" element={<AdminProfile />} />
-        <Route
-          path="/user-management"
-          element={
-            <AdminRoute>
-              <UserManagement />
-            </AdminRoute>
-          }
-        />
-        <Route
-          path="/admin-profile"
-          element={
-            <AdminRoute>
-              <AdminProfile />
-            </AdminRoute>
-          }
-        />
-        <Route
           path="/topics"
           element={
             <UserRoute>
@@ -106,6 +118,7 @@ export default function App() {
             </UserRoute>
           }
         />
+
         <Route
           path="/topics/:topicId"
           element={
@@ -119,14 +132,6 @@ export default function App() {
           element={
             <UserRoute>
               <Lesson />
-            </UserRoute>
-          }
-        />
-        <Route
-          path="/excercises"
-          element={
-            <UserRoute>
-              <Excercise />
             </UserRoute>
           }
         />
@@ -155,6 +160,14 @@ export default function App() {
           }
         />
         <Route
+          path="/excercises"
+          element={
+            <UserRoute>
+              <Excercise />
+            </UserRoute>
+          }
+        />
+        <Route
           path="/about"
           element={
             <UserRoute>
@@ -170,7 +183,33 @@ export default function App() {
             </UserRoute>
           }
         />
-
+        <Route
+          path="/dashboard"
+          element={
+            <AdminRoute>
+              <Dashboard />
+            </AdminRoute>
+          }
+        />
+        <Route path="/dashboard-test" element={<AdminProfile />} />
+        <Route
+          path="/user-management"
+          element={
+            <AdminRoute>
+              <UserManagement />
+            </AdminRoute>
+          }
+        />
+        <Route
+          path="/admin-profile"
+          element={
+            <AdminRoute>
+              <AdminProfile />
+            </AdminRoute>
+          }
+        />
+        <Route path="/history" element={<History />}></Route>
+        <Route path="/statistic" element={<Statistic />}></Route>
         <Route path="/*" element={<NotFound />} />
       </Routes>
       <Toaster

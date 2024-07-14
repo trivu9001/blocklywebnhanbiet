@@ -6,6 +6,9 @@ const BlockLesson = (props) => {
     detailTopicId: id,
     topicName: topicName,
   };
+  // const countLessons = lessons.filter(
+  //   (lesson) => lesson.detailTopicId === id
+  // ).length;
   return (
     <div className="box">
       <div className="image">

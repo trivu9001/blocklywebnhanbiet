@@ -67,7 +67,7 @@ function Dashboard() {
                     <h3>Số người dùng</h3>
                     <BsPeopleFill className='card_icon'/>
                 </div>
-                <h1>300</h1>
+                <h1>10</h1>
             </div>
             <div className='card'>
                 <div className='card-inner'>
@@ -78,10 +78,10 @@ function Dashboard() {
             </div>
             <div className='card'>
                 <div className='card-inner'>
-                    <h3>Số câu đố</h3>
+                    <h3>Số câu hỏi</h3>
                     <BsPeopleFill className='card_icon'/>
                 </div>
-                <h1>33</h1>
+                <h1>60</h1>
             </div>
         </div>
 

@@ -16,6 +16,12 @@ export const CheckAnswer = async (answer) => {
   return await axiosClient.post(`CheckAnswer/SubmitCheckAnswer`, answer);
 };
 
+export const GetAnswer = async (questId, histId) => {
+  return await axiosClient.get(
+    `CheckAnswer/GetAnswer?questId=${questId}&histId=${histId}`
+  );
+};
+
 export const StartPractice = async (id) => {
   return await axiosClient.post(
     "HistoryPractice/InsertHistoryPracticeOfCurUserStart",

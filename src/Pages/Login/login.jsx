@@ -1,6 +1,7 @@
 import { React, useContext, useState } from "react";
 import { GoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import "./login.css";
 import { LoginGoogle, LoginByAccount } from "../../Api/authenticate";
 import { UserContext } from "../../Contexts/UserContext";
@@ -32,7 +33,7 @@ const Login = () => {
         navigate("/dashboard");
       }
     } else {
-      alert(res.message);
+      toast.error(res.message);
     }
   };
   const handleGoogleLogin = async (idToken) => {
@@ -47,7 +48,7 @@ const Login = () => {
         );
         navigate("/home");
       } else {
-        alert("Đăng nhập bằng Google thất bại!!!");
+        toast.error("Đăng nhập bằng Google thất bại!!!");
       }
     } catch (error) {
       console.log("Lỗi");

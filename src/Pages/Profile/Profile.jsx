@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { GetMe, UpdateMe } from "../../Api/user";
 import { formatDate } from "../../Extensions/formatDate";
+import toast from "react-hot-toast";
 import "./profile.css";
 
 const Profile = () => {
@@ -16,10 +17,10 @@ const Profile = () => {
           birth: birthDate,
         });
       } else {
-        alert(res.message);
+        toast.error(res.message);
       }
     } catch (error) {
-      alert(error);
+      toast.error(error);
     }
   };
   const handleChange = (e) => {
@@ -40,10 +41,10 @@ const Profile = () => {
     setLoading(true);
     const res = await UpdateMe(userData);
     if (res.resultCode === 0) {
-      alert("Cập nhật thành công");
+      toast.success("Cập nhật thành công");
       setLoading(false);
     } else {
-      alert("Có lỗi: " + res.message);
+      toast.error("Có lỗi: " + res.message);
     }
   };
   useEffect(() => {
@@ -65,11 +66,12 @@ const Profile = () => {
             <h1>Thông tin cá nhân</h1>
             <form className="user-info" onSubmit={handleSubmit}>
               <input name="id" value={user.id} type="hidden" readOnly />
+              <label>Họ và tên</label>
               <input
                 type="text"
                 name="fullName"
                 value={user.fullName}
-                placeholder="Tên"
+                placeholder="Họ và tên"
                 onChange={handleChange}
               ></input>
               <input
@@ -94,7 +96,7 @@ const Profile = () => {
               {loading ? (
                 <span className="text-loading">Đang cập nhật...</span>
               ) : (
-                <button>Lưu</button>
+                <button type="submit">Lưu</button>
               )}
             </form>
           </div>

@@ -1,6 +1,7 @@
 import React from "react";
 import { GetStatistic } from "../../Api/statistic";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -75,42 +76,51 @@ const Statistic = () => {
   }, [data, timeFrame]);
 
   return (
-    <section className="statistic">
-      <h1>Thống kê số giờ học</h1>
-      <div className="buttons">
-        <button
-          className={timeFrame === "dataWeek" ? "active" : ""}
-          onClick={() => handleClick("dataWeek")}
-        >
-          Theo tuần
-        </button>
-        <button
-          className={timeFrame === "dataMonth" ? "active" : ""}
-          onClick={() => handleClick("dataMonth")}
-        >
-          Theo tháng
-        </button>
-        <button
-          className={timeFrame === "dataYear" ? "active" : ""}
-          onClick={() => handleClick("dataYear")}
-        >
-          Theo năm
-        </button>
-      </div>
-      {data && (
-        <div className="stats">
-          <p>
-            Tổng số phút học:{" "}
-            {data[timeFrame].minutes.reduce((a, b) => a + b, 0)}
-          </p>
-          <p>
-            Tổng số bài học:{" "}
-            {data[timeFrame].lessons.reduce((a, b) => a + b, 0)}
-          </p>
+    <>
+      <section className="heading">
+        <h3>Thống kê </h3>
+        <p>
+          <Link to={"/home"}>Trang chủ &gt;&gt;</Link>
+          Thống kê thời gian và bài học
+        </p>
+      </section>
+      <section className="statistic">
+        <h1>Thống kê số giờ học</h1>
+        <div className="buttons">
+          <button
+            className={timeFrame === "dataWeek" ? "active" : ""}
+            onClick={() => handleClick("dataWeek")}
+          >
+            Theo tuần
+          </button>
+          <button
+            className={timeFrame === "dataMonth" ? "active" : ""}
+            onClick={() => handleClick("dataMonth")}
+          >
+            Theo tháng
+          </button>
+          <button
+            className={timeFrame === "dataYear" ? "active" : ""}
+            onClick={() => handleClick("dataYear")}
+          >
+            Theo năm
+          </button>
         </div>
-      )}
-      {chartData && <Line data={chartData} />}
-    </section>
+        {data && (
+          <div className="stats">
+            <p>
+              Tổng số phút học:{" "}
+              {data[timeFrame].minutes.reduce((a, b) => a + b, 0)}
+            </p>
+            <p>
+              Tổng số bài học:{" "}
+              {data[timeFrame].lessons.reduce((a, b) => a + b, 0)}
+            </p>
+          </div>
+        )}
+        {chartData && <Line data={chartData} />}
+      </section>
+    </>
   );
 };
 
