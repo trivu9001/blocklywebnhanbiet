@@ -211,11 +211,11 @@ const QuestionContainer = (props) => {
             Kiểm tra kết quả
           </button>
         )}
-        {!completed.includes(number) && (
+        {/* {!completed.includes(number) && (
           <button onClick={handleGetAnswer} className="check-answer">
             Xem đáp án
           </button>
-        )}
+        )} */}
         {/* <button onClick={handleCheckAnswer} className="check-answer">
           Kiểm tra kết quả
         </button> */}
