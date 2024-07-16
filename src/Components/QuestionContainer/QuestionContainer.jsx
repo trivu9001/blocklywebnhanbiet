@@ -17,14 +17,17 @@ const QuestionContainer = (props) => {
 
   const navigate = useNavigate();
   const handleCheckAnswer = () => {
-    if ((currentQuestion.typeCheck = 1)) {
+    if (currentQuestion.typeCheck == 1) {
+      console.log("Type check:", currentQuestion.typeCheck);
       if (workspaceRef.current) {
         var blocks = workspaceRef.current.getAllBlocks();
         var answerData = null;
         blocks.forEach(async (block) => {
           var answerBlock = block.getInputTargetBlock("ANSWER");
           if (answerBlock) {
-            var answerValue = answerBlock.getFieldValue("check");
+            var answerValue = answerBlock.getFieldValue("check").toString();
+            var dataType = typeof answerValue;
+            console.log("Data type of answerValue:", dataType);
             var currentPractice = sessionStorage.getItem("currentPractice");
             answerData = {
               blockQuestId: currentQuestion.id,
@@ -40,13 +43,16 @@ const QuestionContainer = (props) => {
         });
       }
     }
-    if ((currentQuestion.typeCheck = 2)) {
+    if (currentQuestion.typeCheck == 2) {
+      console.log("Type check:", currentQuestion.typeCheck);
       if (workspaceRef.current) {
         var blocks = workspaceRef.current.getAllBlocks();
         var answerData = null;
+        console.log("Blockquest_Name:", currentQuestion.blockQuestType);
         blocks.forEach(async (block) => {
-          if (block.type == currentQuestion.Blockquest_Name) {
+          if (block.type == currentQuestion.blockQuestType) {
             var answerBlock = block.getInputTargetBlock("ANSWER");
+            console.log("Type check:", answerBlock);
             if (answerBlock) {
               var answerType = answerBlock.type;
               var currentPractice = sessionStorage.getItem("currentPractice");
@@ -61,30 +67,6 @@ const QuestionContainer = (props) => {
             } else {
               //toast.error("Sai rồi");
             }
-          }
-        });
-      }
-    }
-    if ((currentQuestion.typeCheck = 3)) {
-      if (workspaceRef.current) {
-        var blocks = workspaceRef.current.getAllBlocks();
-        var answerData = null;
-        blocks.forEach(async (block) => {
-          var answerBlock = block.getInputTargetBlock("ANSWER");
-          if (answerBlock) {
-            var answerValue = answerBlock.getFieldValue("check");
-            answerValue = answerValue.toLowerCase();
-            var currentPractice = sessionStorage.getItem("currentPractice");
-            answerData = {
-              blockQuestId: currentQuestion.id,
-              ans: answerValue,
-              blockAns: answerBlock.type,
-              hisId: currentPractice,
-              state: save(workspaceRef.current),
-            };
-            fetchSubmitAnswer(answerData);
-          } else {
-            //toast.error("Sai rồi");
           }
         });
       }

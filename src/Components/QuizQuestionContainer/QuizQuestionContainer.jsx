@@ -17,7 +17,7 @@ const QuizQuestContainer = (props) => {
 
   const navigate = useNavigate();
   const handleCheckAnswer = () => {
-    if ((currentQuestion.typeCheck = 1)) {
+    if (currentQuestion.typeCheck === 1) {
       if (workspaceRef.current) {
         var blocks = workspaceRef.current.getAllBlocks();
         var answerData = null;
@@ -25,10 +25,11 @@ const QuizQuestContainer = (props) => {
           var answerBlock = block.getInputTargetBlock("ANSWER");
           if (answerBlock) {
             var answerValue = answerBlock.getFieldValue("check");
+
             var currentQuizz = sessionStorage.getItem("currentQuizz");
             answerData = {
               blockQuestId: currentQuestion.id,
-              ans: answerValue,
+              ans: answerValue.toString(),
               blockAns: answerBlock.type,
               hisId: currentQuizz,
               state: save(workspaceRef.current),
@@ -40,7 +41,7 @@ const QuizQuestContainer = (props) => {
         });
       }
     }
-    if ((currentQuestion.typeCheck = 2)) {
+    if (currentQuestion.typeCheck === 2) {
       if (workspaceRef.current) {
         var blocks = workspaceRef.current.getAllBlocks();
         var answerData = null;
