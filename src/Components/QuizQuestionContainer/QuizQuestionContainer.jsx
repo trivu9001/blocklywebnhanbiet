@@ -41,6 +41,34 @@ const QuizQuestContainer = (props) => {
         });
       }
     }
+    if (currentQuestion.typeCheck == 3) {
+      console.log("Type check:", currentQuestion.typeCheck);
+      if (workspaceRef.current) {
+        var blocks = workspaceRef.current.getAllBlocks();
+        var answerData = null;
+        console.log("Blockquest_Name:", currentQuestion.blockQuestType);
+        blocks.forEach(async (block) => {
+          if (block.type == currentQuestion.blockQuestType) {
+            var answerBlock = block.getInputTargetBlock("Answer");
+            console.log("Type check:", answerBlock);
+            if (answerBlock) {
+              var answerType = answerBlock.type;
+              var currentPractice = sessionStorage.getItem("currentPractice");
+              answerData = {
+                blockQuestId: currentQuestion.id,
+                ans: answerType,
+                blockAns: answerBlock.type,
+                hisId: currentPractice,
+                state: save(workspaceRef.current),
+              };
+              fetchSubmitAnswer(answerData);
+            } else {
+              //toast.error("Sai rồi");
+            }
+          }
+        });
+      }
+    }
     if (currentQuestion.typeCheck === 2) {
       if (workspaceRef.current) {
         var blocks = workspaceRef.current.getAllBlocks();
@@ -90,7 +118,7 @@ const QuizQuestContainer = (props) => {
           setCurrentQuestion(quizzes[number]);
         } else {
           toast.success("Hoàn thành hết câu hỏi");
-          submitPractice(5);
+          submitPractice(quizzes.length);
         }
       } else {
         toast.error("Sai rồi!!!");
