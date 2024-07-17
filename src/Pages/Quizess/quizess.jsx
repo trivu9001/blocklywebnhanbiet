@@ -24,7 +24,7 @@ const Quizess = () => {
   return (
     <>
       <section className="heading">
-        <h3>Câu đố</h3>
+        <h3>Câu đố -- Lưu ý chỉ được làm một lần --</h3>
         <p>
           <Link to={"/home"}>Trang chủ &gt;&gt;</Link>
           Câu đố

@@ -48,7 +48,7 @@ const History = () => {
                   <th>Chủ đề</th>
                   <th>Thời gian bắt đầu</th>
                   <th>Thời gian kết thúc</th>
-                  <th>Thời gian làm bài</th>
+                  <th>Thời gian làm bài theo phút</th>
                   <th>Số câu hoàn thành</th>
                   <th></th>
                 </tr>

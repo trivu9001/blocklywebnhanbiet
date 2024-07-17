@@ -203,7 +203,7 @@ const QuizQuestContainer = (props) => {
         <div>
           <CountdownTimer
             initialHours={0}
-            initialMinutes={2}
+            initialMinutes={30}
             initialSeconds={0}
             callback={() => autoSubmit()}
           />
