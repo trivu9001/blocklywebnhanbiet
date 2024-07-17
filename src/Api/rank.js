@@ -8,6 +8,6 @@ export const GetRankByTimeAndLesson = async (pageIndex, pageSize) => {
 
 export const GetRankByTimeAndPoint = async (pageIndex, pageSize) => {
   return await axiosClient.get(
-    `Ranking/GetRankByTimeAndPoint?pagesize=${pageSize}&pagenumb=${pageIndex}`
+    `Ranking/GetRankQuizzByTimeAndPoint?pagesize=${pageSize}&pagenumb=${pageIndex}`
   );
 };

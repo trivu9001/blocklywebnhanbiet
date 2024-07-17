@@ -53,12 +53,12 @@ const QuizQuestContainer = (props) => {
             console.log("Type check:", answerBlock);
             if (answerBlock) {
               var answerType = answerBlock.type;
-              var currentPractice = sessionStorage.getItem("currentPractice");
+              var currentQuizz = sessionStorage.getItem("currentQuizz");
               answerData = {
                 blockQuestId: currentQuestion.id,
                 ans: answerType,
                 blockAns: answerBlock.type,
-                hisId: currentPractice,
+                hisId: currentQuizz,
                 state: save(workspaceRef.current),
               };
               fetchSubmitAnswer(answerData);
