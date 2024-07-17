@@ -16,25 +16,22 @@ const QuizQuestContainer = (props) => {
   const workspaceRef = useRef(null);
 
   const navigate = useNavigate();
-  // console.log("Type check first:", currentQuestion.typeCheck);
   const handleCheckAnswer = () => {
-    if (currentQuestion.typeCheck == 1) {
-      console.log("Type check first:", currentQuestion.typeCheck);
+    if (currentQuestion.typeCheck === 1) {
       if (workspaceRef.current) {
         var blocks = workspaceRef.current.getAllBlocks();
         var answerData = null;
         blocks.forEach(async (block) => {
           var answerBlock = block.getInputTargetBlock("ANSWER");
           if (answerBlock) {
-            var answerValue = answerBlock.getFieldValue("check").toString();
-            var dataType = typeof answerValue;
-            console.log("Data type of answerValue:", dataType);
-            var currentPractice = sessionStorage.getItem("currentPractice");
+            var answerValue = answerBlock.getFieldValue("check");
+
+            var currentQuizz = sessionStorage.getItem("currentQuizz");
             answerData = {
               blockQuestId: currentQuestion.id,
-              ans: answerValue,
+              ans: answerValue.toString(),
               blockAns: answerBlock.type,
-              hisId: currentPractice,
+              hisId: currentQuizz,
               state: save(workspaceRef.current),
             };
             fetchSubmitAnswer(answerData);
@@ -44,53 +41,21 @@ const QuizQuestContainer = (props) => {
         });
       }
     }
-
-    if (currentQuestion.typeCheck == 3) {
-      console.log("Type check:", currentQuestion.typeCheck);
+    if (currentQuestion.typeCheck === 2) {
       if (workspaceRef.current) {
         var blocks = workspaceRef.current.getAllBlocks();
         var answerData = null;
-        console.log("Blockquest_Name:", currentQuestion.blockQuestType);
         blocks.forEach(async (block) => {
-          if (block.type == currentQuestion.blockQuestType) {
-            var answerBlock = block.getInputTargetBlock("Answer");
-            console.log("Type check:", answerBlock);
-            if (answerBlock) {
-              var answerType = answerBlock.type;
-              var currentPractice = sessionStorage.getItem("currentPractice");
-              answerData = {
-                blockQuestId: currentQuestion.id,
-                ans: answerType,
-                blockAns: answerBlock.type,
-                hisId: currentPractice,
-                state: save(workspaceRef.current),
-              };
-              fetchSubmitAnswer(answerData);
-            } else {
-              //toast.error("Sai rồi");
-            }
-          }
-        });
-      }
-    }
-    if (currentQuestion.typeCheck == 2) {
-      console.log("Type check:", currentQuestion.typeCheck);
-      if (workspaceRef.current) {
-        var blocks = workspaceRef.current.getAllBlocks();
-        var answerData = null;
-        console.log("Blockquest_Name:", currentQuestion.blockQuestType);
-        blocks.forEach(async (block) => {
-          if (block.type == currentQuestion.blockQuestType) {
+          if (block.type == currentQuestion.Blockquest_Name) {
             var answerBlock = block.getInputTargetBlock("ANSWER");
-            console.log("Type check:", answerBlock);
             if (answerBlock) {
               var answerType = answerBlock.type;
-              var currentPractice = sessionStorage.getItem("currentPractice");
+              var currentQuizz = sessionStorage.getItem("currentQuizz");
               answerData = {
                 blockQuestId: currentQuestion.id,
                 ans: answerType,
                 blockAns: answerBlock.type,
-                hisId: currentPractice,
+                hisId: currentQuizz,
                 state: save(workspaceRef.current),
               };
               fetchSubmitAnswer(answerData);
@@ -125,7 +90,7 @@ const QuizQuestContainer = (props) => {
           setCurrentQuestion(quizzes[number]);
         } else {
           toast.success("Hoàn thành hết câu hỏi");
-          submitPractice(quizzes.length);
+          submitPractice(5);
         }
       } else {
         toast.error("Sai rồi!!!");
@@ -210,7 +175,7 @@ const QuizQuestContainer = (props) => {
         <div>
           <CountdownTimer
             initialHours={0}
-            initialMinutes={10}
+            initialMinutes={2}
             initialSeconds={0}
             callback={() => autoSubmit()}
           />
