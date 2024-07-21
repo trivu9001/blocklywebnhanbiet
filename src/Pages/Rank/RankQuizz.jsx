@@ -58,8 +58,8 @@ const RankQuizz = () => {
                     <tr key={index}>
                       <td>{record.count}</td>
                       <td>{record.userName}</td>
-                      <td>{record.totalTime}</td>
                       <td>{record.totalLesson}</td>
+                      <td>{record.totalTime}</td>
                     </tr>
                   ))
                 ) : (
