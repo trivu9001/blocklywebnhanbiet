@@ -85,7 +85,7 @@ const Statistic = () => {
         </p>
       </section>
       <section className="statistic">
-        <h1>Thống kê số giờ học</h1>
+        <h1>Thống kê thời gian học</h1>
         <div className="buttons">
           <button
             className={timeFrame === "dataWeek" ? "active" : ""}
