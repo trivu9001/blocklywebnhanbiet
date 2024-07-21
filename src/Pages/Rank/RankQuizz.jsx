@@ -47,8 +47,8 @@ const RankQuizz = () => {
                 <tr>
                   <th>Hạng</th>
                   <th>Họ Tên</th>
-                  <th>Tổng thời gian làm quiz</th>
                   <th>Tổng điểm</th>
+                  <th>Tổng thời gian làm quiz tính theo phút</th>
                   <th></th>
                 </tr>
               </thead>

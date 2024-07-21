@@ -47,7 +47,7 @@ const Rank = () => {
                 <tr>
                   <th>Hạng</th>
                   <th>Họ Tên</th>
-                  <th>Tổng thời gian làm bài</th>
+                  <th>Tổng thời gian làm bài tính theo phút</th>
                   <th>Tổng số câu đã làm</th>
                   <th></th>
                 </tr>
