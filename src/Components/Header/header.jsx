@@ -74,7 +74,7 @@ const Header = () => {
                     <Link to={"/rank"}>Xếp hạng học bài</Link>
                   </li>
                   <li>
-                    <Link to={"/rankQuizz"}>Xếp hạng thi</Link>
+                    <Link to={"/rankQuizz"}>Xếp hạng làm Quizz</Link>
                   </li>
                 </ul>
               </li>
