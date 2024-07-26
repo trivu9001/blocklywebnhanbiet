@@ -56,9 +56,7 @@ const Profile = () => {
         <>
           <div className="picture">
             <img
-              src={
-                "https://i.ibb.co/SxJxbKX/Profile.jpg"
-              }
+              src={require(`../../images/avatar.jpg`)}
               alt="Profile Picture"
             />
           </div>

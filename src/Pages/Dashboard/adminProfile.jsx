@@ -50,61 +50,58 @@ const AdminProfile = () => {
     initial();
   }, []);
   return (
-    <main className='main-container'>
+    <main className="main-container">
       <h1> Trang cá nhân</h1>
       <div className="profile-page">
-      {user && (
-        <>
-          <div className="picture">
-            <img
-              src={
-                "https://lh3.googleusercontent.com/a/ACg8ocKms9K2DAGiS1-6KJRP8DyGOAQ0hS-zolWCZmgT-qldomNz9XeB=s96-c"
-              }
-              alt="Profile Picture"
-            />
-          </div>
-          <div className="profile-info">
-            <h1>Thông tin cá nhân</h1>
-            <form className="user-info" onSubmit={handleSubmit}>
-              <input name="id" value={user.id} type="hidden" readOnly />
-              <input
-                type="text"
-                name="fullName"
-                value={user.fullName}
-                placeholder="Tên"
-                onChange={handleChange}
-              ></input>
-              <input
-                type="email"
-                name="email"
-                value={user.email}
-                readOnly
-              ></input>
-              <input
-                type="text"
-                name="phone"
-                value={user.phone}
-                placeholder="Số điện thoại"
-                onChange={handleChange}
-              ></input>
-              <input
-                type="date"
-                name="birth"
-                value={user.birth}
-                onChange={handleChange}
-              ></input>
-              {loading ? (
-                <span className="text-loading">Đang cập nhật...</span>
-              ) : (
-                <button type="submit">Lưu</button>
-              )}
-            </form>
-          </div>
-        </>
-      )}
-    </div>
+        {user && (
+          <>
+            <div className="picture">
+              <img
+                src={require(`../../images/avatar.jpg`)}
+                alt="Profile Picture"
+              />
+            </div>
+            <div className="profile-info">
+              <h1>Thông tin cá nhân</h1>
+              <form className="user-info" onSubmit={handleSubmit}>
+                <input name="id" value={user.id} type="hidden" readOnly />
+                <input
+                  type="text"
+                  name="fullName"
+                  value={user.fullName}
+                  placeholder="Tên"
+                  onChange={handleChange}
+                ></input>
+                <input
+                  type="email"
+                  name="email"
+                  value={user.email}
+                  readOnly
+                ></input>
+                <input
+                  type="text"
+                  name="phone"
+                  value={user.phone}
+                  placeholder="Số điện thoại"
+                  onChange={handleChange}
+                ></input>
+                <input
+                  type="date"
+                  name="birth"
+                  value={user.birth}
+                  onChange={handleChange}
+                ></input>
+                {loading ? (
+                  <span className="text-loading">Đang cập nhật...</span>
+                ) : (
+                  <button type="submit">Lưu</button>
+                )}
+              </form>
+            </div>
+          </>
+        )}
+      </div>
     </main>
-    
   );
 };
 
