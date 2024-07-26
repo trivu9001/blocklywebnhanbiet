@@ -48,7 +48,7 @@ const Rank = () => {
                   <th>Hạng</th>
                   <th>Họ Tên</th>
                   <th>Tổng thời gian làm bài tính theo phút</th>
-                  <th>Tổng số bài học</th>
+                  <th>Tổng số bài đã làm</th>
                   <th></th>
                 </tr>
               </thead>
