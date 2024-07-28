@@ -23,6 +23,7 @@ instance.interceptors.response.use(
       sessionStorage.removeItem("token");
       sessionStorage.removeItem("email");
       sessionStorage.removeItem("type");
+      sessionStorage.removeItem("fullname");
       window.location.href("/login");
     } //xuất ra lỗi
     return Promise.reject(error);

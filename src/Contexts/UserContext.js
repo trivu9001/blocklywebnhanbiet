@@ -8,8 +8,13 @@ export const UserContextProvider = ({ children }) => {
     const email = sessionStorage.getItem("email");
     const type = sessionStorage.getItem("type");
     const fullname = sessionStorage.getItem("fullname");
-    if (token !== null && email !== null && type !==null && fullname !== null ) {
-      setUser({ token, email, fullname });
+    if (
+      token !== null &&
+      email !== null &&
+      type !== null &&
+      fullname !== null
+    ) {
+      setUser({ token, email, type, fullname });
     }
   }, []);
   const LoginContext = (email, token, type, fullname) => {
