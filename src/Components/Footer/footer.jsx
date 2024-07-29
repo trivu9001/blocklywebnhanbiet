@@ -23,7 +23,7 @@ const Footer = () => {
               <i className="fas fa-arrow-right" /> Lịch sử học
             </a>
             <a>
-              <i className="fas fa-arrow-right" /> Lịch sử thi
+              <i className="fas fa-arrow-right" /> Lịch sử giải đố
             </a>
           </div>
           <div className="box">
